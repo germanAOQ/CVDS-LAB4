@@ -39,7 +39,7 @@ public class GameScoreTest {
 	
    /*PRUEBAS OriginalScore*/
     @Test
-    public void validateOriginalScore1() {
+    public void validateOriginalScore1Test() {
     	
 		OriginalScore prueba= new OriginalScore();
     	try {
@@ -53,7 +53,13 @@ public class GameScoreTest {
     public void validateOriginalScore2() {
     	
 		OriginalScore prueba= new OriginalScore();
-		int result=prueba.calculateScore(5,1);
+		int result=0;
+		try {
+			result = prueba.calculateScore(5,1);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(90,result);
     	
     }
@@ -61,7 +67,13 @@ public class GameScoreTest {
     public void validateOriginalScore3() {
     	
 		OriginalScore prueba= new OriginalScore();
-		int result=prueba.calculateScore(0,12);
+		int result=0;
+		try {
+			result = prueba.calculateScore(0,12);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0,result);
     	
     }
@@ -69,7 +81,13 @@ public class GameScoreTest {
     public void validateOriginalScoreFrontera() {
     	
 		OriginalScore prueba= new OriginalScore();
-		int result=prueba.calculateScore(1,10);
+		int result=0;
+		try {
+			result = prueba.calculateScore(1,10);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0,result);
     }
     
@@ -89,7 +107,13 @@ public class GameScoreTest {
     public void validateBonusScore2() {
     	
 		BonusScore prueba= new BonusScore();
-		int result=prueba.calculateScore(5,1);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(5,1);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(45,result);
     	
     }
@@ -97,7 +121,13 @@ public class GameScoreTest {
     public void validateBonusScore3() {
     	
 		BonusScore prueba= new BonusScore();
-		int result=prueba.calculateScore(2,10);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(2,10);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0,result);
     	
     }
@@ -105,7 +135,13 @@ public class GameScoreTest {
     public void validateBonusScoreFrontera() {
     	
 		BonusScore prueba= new BonusScore();
-		int result=prueba.calculateScore(5,10);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(5,10);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0,result);
     }
 	
@@ -125,15 +161,27 @@ public class GameScoreTest {
     public void validatePowerScore2() {
     	
 		PowerScore prueba= new PowerScore();
-		int result=prueba.calculateScore(5,1);
-		assertEquals(45,result);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(5,1);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		assertEquals(500,result);
     	
     }
 	@Test
     public void validatePowerBonusScore2() {
     	
 		PowerScore prueba= new PowerScore();
-		int result=prueba.calculateScore(1,20);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(1,20);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(0,result);
     	
     }
@@ -141,7 +189,13 @@ public class GameScoreTest {
     public void validatePowerBonusScoreFrontera1() {
     	
 		PowerScore prueba= new PowerScore();
-		int result=prueba.calculateScore(10,10);
+		int result = 0;
+		try {
+			result = prueba.calculateScore(10,10);
+		} catch (HangmanException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		assertEquals(500,result);
     }
 	@Test

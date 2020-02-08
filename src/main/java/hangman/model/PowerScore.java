@@ -19,9 +19,12 @@ public class PowerScore implements GameScore{
 	 * @param incorrectCount numero de letras incorrectas 
 	 * @return retorna el puntaje actual
 	 */
-	public int calculateScore(int correctCount, int incorrectCount) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int calculateScore(int correctCount, int incorrectCount) throws HangmanException {
+		int result= (int) ((Math.pow(5,correctCount)) - (8*incorrectCount));
+		if (correctCount<0 || incorrectCount<0) throw new HangmanException(HangmanException.NO_NEGATIVOS);
+		if (result<0) result=0;
+		if (result>500) result=500;
+		return result;
 	}
 
 }

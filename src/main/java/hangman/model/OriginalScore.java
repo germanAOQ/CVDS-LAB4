@@ -19,8 +19,12 @@ public class OriginalScore implements GameScore{
 	 * @param incorrectCount numero de letras incorrectas 
 	 * @return retorna el puntaje actual
 	 */
-	public int calculateScore(int correctCount, int incorrectCount) {
-		return 0;
+	public int calculateScore(int correctCount, int incorrectCount) throws HangmanException {
+		
+		int result= 100 - (10*incorrectCount);
+		if (correctCount<0 || incorrectCount<0) throw new HangmanException(HangmanException.NO_NEGATIVOS);
+		if (result<0) result=0;
+		return result;
 	}
 
 }
