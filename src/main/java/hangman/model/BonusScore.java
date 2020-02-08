@@ -7,6 +7,17 @@ public class BonusScore implements GameScore{
 	}
 
 	@Override
+	/**
+	 * El juego inicia en 0 puntos.
+	 * Se bonifica con 10 puntos cada letra correcta.
+	 * Se penaliza con 5 puntos cada letra incorrecta.
+	 * El puntaje mínimo es 0
+	 * Precondition: correctCount es un entero positivo
+	 * Postcondition: retorna (10*correctCount) - (5*incorrectCount) y debe ser positivo el resultado
+	 * @param correctCount numero de letras acertadas 
+	 * @param incorrectCount numero de letras incorrectas 
+	 * @return retorna el puntaje actual
+	 */
 	public int calculateScore(int correctCount, int incorrectCount) {
 		// TODO Auto-generated method stub
 		return 0;
