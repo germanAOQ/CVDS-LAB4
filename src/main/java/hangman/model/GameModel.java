@@ -23,6 +23,8 @@ public class GameModel {
     private int correctCount;
     private LocalDateTime dateTime;
     private int gameScore;
+    private GameScore score;
+    private int tipo;
     private int[] lettersUsed;
     
     
@@ -34,14 +36,24 @@ public class GameModel {
     
     
    
-    public GameModel(HangmanDictionary dictionary){
+    public GameModel(HangmanDictionary dictionary,GameScore nScore) {
         //this.dictionary = new EnglishDictionaryDataSource();
         this.dictionary=dictionary;
         randomWord = selectRandomWord();
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+        this.score=nScore;
+        try {
+        	if(incorrectCount+correctCount == 0) {
+        		this.gameScore = score.calculateScore(correctCount, incorrectCount);
+        	}else {
+        		this.gameScore = nScore.initialScore();
+        	}
+		} catch (HangmanException e) {
+			e.printStackTrace();
+		}
+		
         
     }
     
@@ -52,7 +64,12 @@ public class GameModel {
         randomWordCharArray = randomWord.toCharArray();
         incorrectCount = 0;
         correctCount = 0;
-        gameScore = 100;
+       //gameScore = 100;
+        try {
+			this.gameScore=score.calculateScore(correctCount, incorrectCount);
+		} catch (HangmanException e) {
+			e.printStackTrace();
+		}
     }
 
     //setDateTime
@@ -74,10 +91,14 @@ public class GameModel {
         }
         if(positions.size() == 0){
             incorrectCount++;
-            gameScore -= 10;
         } else {
             correctCount += positions.size();
         }
+        try {
+			gameScore = score.calculateScore(incorrectCount, correctCount);
+		} catch (HangmanException e) {
+			e.printStackTrace();
+		}
         return positions;
         
     }

@@ -27,4 +27,9 @@ public class OriginalScore implements GameScore{
 		return result;
 	}
 
+	@Override
+	public int initialScore() {
+		return 100;
+	}
+
 }

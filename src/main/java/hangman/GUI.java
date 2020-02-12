@@ -29,6 +29,8 @@ public class GUI {
     public static final String CREDITS_KEY = "creditsscreen";
     public static final String GAME_KEY = "gamescreen";
     public static final String GAME_OVER_KEY = "gameoverscreen";
+    
+    private GameScore score;
 
     private Language language;
     private HangmanDictionary dictionary;
@@ -48,20 +50,23 @@ public class GUI {
         this.language = factoryMethod.createLanguage();
         this.dictionary = factoryMethod.createDictionary();
         this.hangmanPanel = factoryMethod.createHangmanPanel();
+        
     }
 
     @Inject
     // Use Guice constructor
-    public GUI(Language language, HangmanDictionary dictionary, HangmanPanel hangmanPanel){
+    public GUI(Language language, HangmanDictionary dictionary, HangmanPanel hangmanPanel,GameScore nScore){
         this.language = language;
         this.dictionary= dictionary;
         this.hangmanPanel = hangmanPanel;
+        this.score=nScore;
+        
     }
 
     //method: setup
     //purpose: Create the various panels (game screens) for our game
     // and attach them to the main frame.
-    private void setup(){
+    private void setup() throws HangmanException{
         mainFrameController = new MainFrameController(
                 new MainFrameModel(PROJECT_NAME,600,400,null,EXIT_ON_CLOSE),
                 new MainFrame()
@@ -79,7 +84,7 @@ public class GUI {
                 mainFrameController
         );
 
-        GameModel gameModel = new GameModel(dictionary);
+        GameModel gameModel = new GameModel(dictionary, score);
         gameController = new GameController(
                 new GamePanel(gameModel.getCharacterSet(), hangmanPanel, language),
                 gameModel,
@@ -119,7 +124,12 @@ public class GUI {
     //then set the whole thing visible
     private void setupAndStart(){
         javax.swing.SwingUtilities.invokeLater(() -> {
-            setup();
+            try {
+				setup();
+			} catch (HangmanException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
             mainFrameController.changeVisibleCard(SPLASH_KEY);
             mainFrameController.getFrame().setVisible(true);
         });
